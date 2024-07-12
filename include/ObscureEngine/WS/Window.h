@@ -2,6 +2,7 @@
 
 #include <string_view>
 #include <memory>
+#include <tuple>
 
 namespace ObscureEngine
 {
@@ -25,7 +26,25 @@ namespace ObscureEngine
       void pollEvent();
       void close();
 
+      void position(uint32_t x, uint32_t y);
+
       inline bool isOpen() const { return !glfwWindowShouldClose(this->window); }
+      inline std::tuple<uint32_t, uint32_t> size() const;
+      inline std::tuple<uint32_t, uint32_t> position() const;
     };
   }
+}
+
+std::tuple<uint32_t, uint32_t> ObscureEngine::WS::Window::size() const
+{
+  uint32_t width, height;
+  glfwGetWindowSize(this->window, (int *)&width, (int *)&height);
+  return std::make_tuple(width, height);
+}
+
+std::tuple<uint32_t, uint32_t> ObscureEngine::WS::Window::position() const
+{
+  uint32_t x, y;
+  glfwGetWindowPos(this->window, (int *)&x, (int *)&y);
+  return std::make_tuple(x, y);
 }

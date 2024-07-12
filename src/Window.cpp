@@ -53,3 +53,8 @@ void ObscureEngine::WS::Window::close()
 {
   glfwSetWindowShouldClose(this->window, GLFW_TRUE);
 }
+
+void ObscureEngine::WS::Window::position(uint32_t x, uint32_t y)
+{
+  glfwSetWindowPos(this->window, (int)x, (int)y);
+}
