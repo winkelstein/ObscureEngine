@@ -48,3 +48,8 @@ void ObscureEngine::WS::Window::clear(uint8_t red, uint8_t green, uint8_t blue, 
 }
 
 void ObscureEngine::WS::Window::pollEvent() { glfwPollEvents(); }
+
+void ObscureEngine::WS::Window::close()
+{
+  glfwSetWindowShouldClose(this->window, GLFW_TRUE);
+}
