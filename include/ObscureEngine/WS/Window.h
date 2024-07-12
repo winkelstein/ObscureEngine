@@ -1,3 +1,4 @@
+#pragma once
 #include "../GLTK/glContext.h"
 
 #include <string_view>
