@@ -1,5 +1,7 @@
 #include "../include/ObscureEngine/GLTK/Shader.h"
 
+GLuint ObscureEngine::GLTK::Shader::binded_program = 0;
+
 ObscureEngine::GLTK::Shader::Shader(GLuint instance)
 {
   this->instance = instance;
@@ -58,8 +60,9 @@ std::optional<GLint> ObscureEngine::GLTK::Shader::findUniformLocation(std::strin
 {
   std::optional<GLint> result = std::nullopt;
   auto iter = this->uniforms.find(std::string(name));
+
   if (iter != this->uniforms.end())
-  {
     result = iter->second;
-  }
+
+  return result;
 }
