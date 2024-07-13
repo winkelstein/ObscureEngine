@@ -1,3 +1,4 @@
+#pragma once
 #include "WS/Window.h"
 #include <optional>
 
