@@ -1,6 +1,9 @@
 #pragma once
 #include "GLTK/drawable.h"
+#include "GLTK/Renderer.hpp"
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 namespace ObscureEngine
 {
     class Voxel : public GLTK::Drawable
@@ -40,6 +43,8 @@ namespace ObscureEngine
 
     private:
         void update_matrix();
+
+        GLuint createVAO();
     };
 }
 
