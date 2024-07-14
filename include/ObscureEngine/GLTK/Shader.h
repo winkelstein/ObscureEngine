@@ -12,7 +12,7 @@ namespace ObscureEngine
     {
     private:
       static GLuint binded_program;
-      std::map<const std::string, GLint> uniforms;
+      std::map<std::string, GLint> uniforms;
 
     public:
       enum class ShaderType
