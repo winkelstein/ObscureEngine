@@ -31,6 +31,8 @@ namespace ObscureEngine
       inline bool isOpen() const { return !glfwWindowShouldClose(this->window); }
       inline std::tuple<uint32_t, uint32_t> size() const;
       inline std::tuple<uint32_t, uint32_t> position() const;
+
+      inline GLFWwindow *__get_native_handler() const { return this->window; }
     };
   }
 }
