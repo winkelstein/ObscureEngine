@@ -53,8 +53,8 @@ void ObscureEngine::GLTK::Shader::getUniforms()
     GLenum type = 0;
     glGetActiveUniform(this->instance, i, 16, &length, &var_size, &type, &name[0]);
 
-    GLint location = glGetUniformLocation(this->instance, name.c_str());
-    this->uniforms.insert_or_assign(name, location);
+    GLint location = glGetUniformLocation(this->instance, name.substr(0, length).c_str());
+    this->uniforms.insert_or_assign(name.substr(0, length), location);
   }
 }
 
