@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <map>
 #include <string_view>
+#include <string>
 
 namespace ObscureEngine
 {

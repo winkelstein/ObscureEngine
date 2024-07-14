@@ -45,14 +45,16 @@ void ObscureEngine::GLTK::Shader::getUniforms()
 
   for (int i = 0; i < numUniforms; i++)
   {
-    char name[16];
+    std::string name;
+    name.resize(16);
+
     GLsizei length = 0;
     GLsizei var_size = 0;
     GLenum type = 0;
-    glGetActiveUniform(this->instance, i, 16, &length, &var_size, &type, name);
+    glGetActiveUniform(this->instance, i, 16, &length, &var_size, &type, &name[0]);
 
-    GLint location = glGetUniformLocation(this->instance, name);
-    this->uniforms.insert_or_assign(std::string(name), location);
+    GLint location = glGetUniformLocation(this->instance, name.c_str());
+    this->uniforms.insert_or_assign(name, location);
   }
 }
 
