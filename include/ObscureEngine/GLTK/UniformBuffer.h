@@ -25,15 +25,15 @@ namespace ObscureEngine
 template <class _Ty>
 ObscureEngine::GLTK::UniformBuffer<_Ty>::UniformBuffer()
 {
-  glGenBuffers(1, &this->handler);
-  glBindBuffer(GL_UNIFORM_BUFFER, this->handler);
+  glGenBuffers(1, &this->instance);
+  glBindBuffer(GL_UNIFORM_BUFFER, this->instance);
   glBufferData(GL_UNIFORM_BUFFER, sizeof(_Ty), nullptr, GL_DYNAMIC_DRAW);
 }
 
 template <class _Ty>
 ObscureEngine::GLTK::UniformBuffer<_Ty>::~UniformBuffer()
 {
-  glDeleteBuffers(1, &this->handler);
+  glDeleteBuffers(1, &this->instance);
 }
 
 template <typename _Ty>
@@ -45,13 +45,13 @@ void ObscureEngine::GLTK::UniformBuffer<_Ty>::data(const _Ty *data)
 template <typename _Ty>
 void ObscureEngine::GLTK::UniformBuffer<_Ty>::bindBase(const unsigned int base) const
 {
-  glBindBufferBase(GL_UNIFORM_BUFFER, base, this->handler);
+  glBindBufferBase(GL_UNIFORM_BUFFER, base, this->instance);
 }
 
 template <typename _Ty>
 void ObscureEngine::GLTK::UniformBuffer<_Ty>::bind()
 {
-  glBindBuffer(GL_UNIFORM_BUFFER, this->handler);
+  glBindBuffer(GL_UNIFORM_BUFFER, this->instance);
 }
 
 template <typename _Ty>
