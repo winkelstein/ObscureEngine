@@ -1,7 +1,5 @@
 #include "../include/ObscureEngine/GLTK/Shader.h"
 
-GLuint ObscureEngine::GLTK::Shader::binded_program = 0;
-
 ObscureEngine::GLTK::Shader::Shader(GLuint instance)
 {
   this->instance = instance;
@@ -15,27 +13,12 @@ ObscureEngine::GLTK::Shader::~Shader()
 
 void ObscureEngine::GLTK::Shader::bind()
 {
-  Shader::binded_program = this->instance;
-
   glUseProgram(this->instance);
 }
 void ObscureEngine::GLTK::Shader::unbind()
 {
-  Shader::binded_program = 0;
 
   glUseProgram(this->instance);
-}
-
-bool ObscureEngine::GLTK::Shader::isBinded() const
-{
-  bool result = false;
-
-  if (Shader::binded_program == this->instance)
-  {
-    result = true;
-  }
-
-  return result;
 }
 
 void ObscureEngine::GLTK::Shader::getUniforms()

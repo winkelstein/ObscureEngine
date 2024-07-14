@@ -31,7 +31,6 @@ namespace ObscureEngine
 
       void bind() override;
       void unbind() override;
-      bool isBinded() const override;
 
       template <class _Ty>
       void uniform(std::string_view name, _Ty data);
