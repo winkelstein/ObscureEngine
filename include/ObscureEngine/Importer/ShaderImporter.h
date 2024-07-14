@@ -16,7 +16,7 @@ namespace ObscureEngine
 
     private:
       static std::string getSourceFromFile(std::filesystem::path path);
-      static GLuint compile_shader(std::string src, GLTK::Shader::ShaderType type);
+      static GLuint compileShader(std::string src, GLTK::Shader::ShaderType type);
       static GLuint linkShaderProgram(std::vector<GLuint> shaders);
       static GLuint add(GLTK::Shader::ShaderType type, std::filesystem::path path);
     };

@@ -3,6 +3,8 @@
 #include <filesystem>
 #include <string>
 #include <utility>
+#include <nlohmann/json.hpp>
+#include <fstream>
 
 namespace ObscureEngine
 {
