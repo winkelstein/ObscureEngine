@@ -1,23 +1,23 @@
 #pragma once
-#include "Context.h"
+#include "Core.h"
 
 namespace ObscureEngine
 {
   namespace GLTK
   {
-    class glContext : public Context
+    class glContext
     {
     private:
       GLFWwindow *window;
 
-    public:
-      void init(GLFWwindow *window) override;
-      void destroy() override;
+    protected:
+      void context_init(GLFWwindow *window);
+      void context_destroy();
 
-      void makeContextCurrent() override;
-      void swapBuffers() override;
+      void context_makeContextCurrent();
+      void context_swapBuffers();
 
-      void clear(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) override;
+      void context_clear(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
     };
   }
 }

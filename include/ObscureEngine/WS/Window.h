@@ -9,14 +9,13 @@ namespace ObscureEngine
 {
   namespace WS
   {
-    class Window
+    class Window : public GLTK::glContext
     {
     private:
-      std::unique_ptr<GLTK::Context> context;
       GLFWwindow *window;
 
     public:
-      Window(std::string_view name, uint32_t width, uint32_t height, GLTK::Context *context = new GLTK::glContext());
+      Window(std::string_view name, uint32_t width, uint32_t height);
       ~Window();
 
       void swapBuffers();

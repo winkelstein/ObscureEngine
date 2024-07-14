@@ -1,9 +1,7 @@
 #include "../include/ObscureEngine/WS/Window.h"
 
-ObscureEngine::WS::Window::Window(std::string_view name, uint32_t width, uint32_t height, GLTK::Context *context)
+ObscureEngine::WS::Window::Window(std::string_view name, uint32_t width, uint32_t height)
 {
-  this->context = std::unique_ptr<GLTK::Context>(context);
-
   if (!glfwInit())
   {
     throw std::runtime_error("Failed to initialize GLFW");
@@ -20,31 +18,31 @@ ObscureEngine::WS::Window::Window(std::string_view name, uint32_t width, uint32_
     throw std::runtime_error("Failed to create a window");
   }
 
-  this->context->init(this->window);
-  this->context->makeContextCurrent();
+  this->context_init(this->window);
+  this->makeContextCurrent();
 }
 
 ObscureEngine::WS::Window::~Window()
 {
-  this->context->destroy();
+  this->context_destroy();
   glfwDestroyWindow(this->window);
   glfwTerminate();
 }
 
 void ObscureEngine::WS::Window::swapBuffers()
 {
-  this->context->swapBuffers();
+  this->context_swapBuffers();
 }
 
 void ObscureEngine::WS::Window::makeContextCurrent()
 {
-  this->context->makeContextCurrent();
+  this->context_makeContextCurrent();
 }
 
 void ObscureEngine::WS::Window::clear(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
 {
-  this->context->swapBuffers();
-  this->context->clear(red, green, blue, alpha);
+  this->context_swapBuffers();
+  this->context_clear(red, green, blue, alpha);
 }
 
 void ObscureEngine::WS::Window::pollEvent() { glfwPollEvents(); }
