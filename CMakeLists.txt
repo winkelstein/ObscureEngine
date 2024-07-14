@@ -10,8 +10,10 @@ file(GLOB
     SOURCE_FILES "src/*.cpp")
 add_library(ObscureEngine SHARED ${SOURCE_FILES})
 
-find_package(glfw3 3.4 REQUIRED)
+#find_package(glfw3 3.4 REQUIRED)
 find_package(OpenGL REQUIRED)
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third-party/glfw)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
