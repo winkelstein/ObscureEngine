@@ -1,19 +1,21 @@
 #include "../include/ObscureEngine/GLTK/glContext.h"
+#include <iostream>
 
 void ObscureEngine::GLTK::glContext::context_init(GLFWwindow *window)
 {
   this->window = window;
+  this->context_makeContextCurrent();
 
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
+
+  glDepthMask(GL_TRUE);
 
   glDepthFunc(GL_LESS);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void ObscureEngine::GLTK::glContext::context_destroy()
-{
-}
+void ObscureEngine::GLTK::glContext::context_destroy() {}
 
 void ObscureEngine::GLTK::glContext::context_makeContextCurrent()
 {
