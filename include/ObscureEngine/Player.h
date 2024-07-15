@@ -25,7 +25,7 @@ namespace ObscureEngine
 
     virtual void process(double ticks);
 
-    inline const Camera &camera() const { this->m_camera; }
+    inline const Camera &camera() const { return this->m_camera; }
 
   private:
     void move(glm::vec3 velocity);

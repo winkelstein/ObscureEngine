@@ -4,21 +4,25 @@
 #include <ObscureEngine/Importer/ShaderImporter.h>
 #include <ObscureEngine/Voxel.h>
 #include <ObscureEngine/Screen.h>
-#include <ObscureEngine/Camera.h>
+#include <ObscureEngine/Player.h>
+#include <ObscureEngine/WS/Mouse.hpp>
+#include <ObscureEngine/WS/Keyboard.hpp>
 
-using ObscureEngine::Camera;
+using ObscureEngine::Player;
 using ObscureEngine::Screen;
 using ObscureEngine::Voxel;
 using ObscureEngine::GLTK::Shader;
 using ObscureEngine::Importer::ShaderImporter;
+using ObscureEngine::WS::Keyboard;
+using ObscureEngine::WS::Mouse;
 using ObscureEngine::WS::Window;
 
 int main()
 {
   Window window("ObscureEngine example", 800, 600);
   auto [width, height] = window.size();
+  Player player;
   Screen screen(width, height);
-  Camera camera;
 
   ShaderImporter shader_importer;
 
@@ -27,14 +31,25 @@ int main()
   shader->bind();
 
   Voxel vox1(glm::vec4(1.0, 0.0, 0.0, 1.0));
-  vox1.position(glm::vec3(0.0, 0.0, -5.0));
+  vox1.position(glm::vec3(0.0, 0.0, 0.0));
 
   while (window.isOpen())
   {
     window.pollEvent();
 
+    player.onMouseInput(window);
+    auto [width, height] = window.size();
+    Mouse::position(window, width / 2.0, height / 2.0);
+    player.onKeyboardInput(window);
+    player.process(ObscureEngine::Physics::constants::TICK_COEF);
+
+    if (Keyboard::isButtonPressed(window, Keyboard::VirtualKey::ESC))
+    {
+      window.close();
+    }
+
     screen.push(&vox1, *shader);
-    screen.onCameraUpdate(camera);
+    screen.onCameraUpdate(player.camera());
     screen.render();
     window.clear(1.0, 1.0, 1.0, 1.0);
   }
