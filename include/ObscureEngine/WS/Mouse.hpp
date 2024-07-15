@@ -18,9 +18,9 @@ namespace ObscureEngine
     public:
       inline static bool is_button_pressed(const Window &win, const MouseButton button);
       inline static bool is_button_released(const Window &win, const MouseButton button);
-      inline static std::tuple<uint32_t, uint32_t> position(const Window &win);
+      inline static std::tuple<int, int> position(const Window &win);
 
-      inline static void position(const Window &win, uint32_t width, uint32_t height);
+      inline static void position(const Window &win, int width, int height);
 
       inline static void visibility(const Window &win, bool state);
     };
@@ -39,7 +39,7 @@ bool ObscureEngine::WS::Mouse::is_button_released(const Window &win, const Mouse
   return state == GLFW_RELEASE;
 }
 
-std::tuple<uint32_t, uint32_t> ObscureEngine::WS::Mouse::position(const Window &win)
+std::tuple<int, int> ObscureEngine::WS::Mouse::position(const Window &win)
 {
   double xpos, ypos;
   glfwGetCursorPos(win.__get_native_handler(), &xpos, &ypos);
@@ -49,7 +49,7 @@ std::tuple<uint32_t, uint32_t> ObscureEngine::WS::Mouse::position(const Window &
   return std::make_tuple(xpos, ypos);
 }
 
-void ObscureEngine::WS::Mouse::position(const Window &win, uint32_t width, uint32_t height)
+void ObscureEngine::WS::Mouse::position(const Window &win, int width, int height)
 {
   glfwSetCursorPos(win.__get_native_handler(), width, height);
 }

@@ -1,8 +1,8 @@
 #include "../include/ObscureEngine/Screen.h"
 
-ObscureEngine::Screen::Screen(uint32_t width, uint32_t height)
+ObscureEngine::Screen::Screen(int width, int height)
 {
-  glViewport(0, 0, width, height);
+  glViewport(0, 0, width * 2, height * 2);
   std::memset(&this->mvp, 0, sizeof(MVP));
   this->mvp.projection = glm::perspectiveFov(glm::radians(60.0f), (float)width, (float)height, 0.01f, 10000.0f);
 
@@ -31,7 +31,7 @@ void ObscureEngine::Screen::push(const GLTK::Drawable *object, GLTK::Shader &sha
   this->qDraw.push(std::pair<const GLTK::Drawable *, GLTK::Shader &>(object, shader));
 }
 
-void ObscureEngine::Screen::resize(uint32_t width, uint32_t height)
+void ObscureEngine::Screen::resize(int width, int height)
 {
   glViewport(0, 0, width, height);
   this->mvp.projection = glm::perspectiveFov(glm::radians(60.0f), (float)width, (float)height, 0.01f, 100.0f);

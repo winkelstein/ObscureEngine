@@ -15,7 +15,7 @@ namespace ObscureEngine
       GLFWwindow *window;
 
     public:
-      Window(std::string_view name, uint32_t width, uint32_t height);
+      Window(std::string_view name, int width, int height);
       ~Window();
 
       void swapBuffers();
@@ -26,27 +26,27 @@ namespace ObscureEngine
       void pollEvent();
       void close();
 
-      void position(uint32_t x, uint32_t y);
+      void position(int x, int y);
 
       inline bool isOpen() const { return !glfwWindowShouldClose(this->window); }
-      inline std::tuple<uint32_t, uint32_t> size() const;
-      inline std::tuple<uint32_t, uint32_t> position() const;
+      inline std::tuple<int, int> size() const;
+      inline std::tuple<int, int> position() const;
 
       inline GLFWwindow *__get_native_handler() const { return this->window; }
     };
   }
 }
 
-std::tuple<uint32_t, uint32_t> ObscureEngine::WS::Window::size() const
+std::tuple<int, int> ObscureEngine::WS::Window::size() const
 {
-  uint32_t width, height;
-  glfwGetWindowSize(this->window, (int *)&width, (int *)&height);
+  int width, height;
+  glfwGetWindowSize(this->window, &width, &height);
   return std::make_tuple(width, height);
 }
 
-std::tuple<uint32_t, uint32_t> ObscureEngine::WS::Window::position() const
+std::tuple<int, int> ObscureEngine::WS::Window::position() const
 {
-  uint32_t x, y;
-  glfwGetWindowPos(this->window, (int *)&x, (int *)&y);
+  int x, y;
+  glfwGetWindowPos(this->window, &x, &y);
   return std::make_tuple(x, y);
 }

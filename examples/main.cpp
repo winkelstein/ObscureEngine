@@ -7,7 +7,9 @@
 #include <ObscureEngine/Player.h>
 #include <ObscureEngine/WS/Mouse.hpp>
 #include <ObscureEngine/WS/Keyboard.hpp>
+#include <ObscureEngine/FPSCounter.h>
 
+using ObscureEngine::FPSCounter;
 using ObscureEngine::Player;
 using ObscureEngine::Screen;
 using ObscureEngine::Voxel;
@@ -22,7 +24,9 @@ int main()
   Window window("ObscureEngine example", 800, 600);
   auto [width, height] = window.size();
   Player player;
+  std::cout << (float)width << " " << (float)height << std::endl;
   Screen screen(width, height);
+  FPSCounter counter;
 
   ShaderImporter shader_importer;
 
@@ -35,13 +39,14 @@ int main()
 
   while (window.isOpen())
   {
+    counter.start();
     window.pollEvent();
 
     player.onMouseInput(window);
     auto [width, height] = window.size();
     Mouse::position(window, width / 2.0, height / 2.0);
     player.onKeyboardInput(window);
-    player.process(ObscureEngine::Physics::constants::TICK_COEF);
+    player.process(counter.ticks());
 
     if (Keyboard::isButtonPressed(window, Keyboard::VirtualKey::ESC))
     {
@@ -52,5 +57,6 @@ int main()
     screen.onCameraUpdate(player.camera());
     screen.render();
     window.clear(1.0, 1.0, 1.0, 1.0);
+    counter.stop();
   }
 }

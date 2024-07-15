@@ -1,6 +1,6 @@
 #include "../include/ObscureEngine/WS/Window.h"
 
-ObscureEngine::WS::Window::Window(std::string_view name, uint32_t width, uint32_t height)
+ObscureEngine::WS::Window::Window(std::string_view name, int width, int height)
 {
   if (!glfwInit())
   {
@@ -52,7 +52,7 @@ void ObscureEngine::WS::Window::close()
   glfwSetWindowShouldClose(this->window, GLFW_TRUE);
 }
 
-void ObscureEngine::WS::Window::position(uint32_t x, uint32_t y)
+void ObscureEngine::WS::Window::position(int x, int y)
 {
-  glfwSetWindowPos(this->window, (int)x, (int)y);
+  glfwSetWindowPos(this->window, x, y);
 }

@@ -26,12 +26,12 @@ namespace ObscureEngine
     std::recursive_mutex mtx;
 
   public:
-    Screen(uint32_t width, uint32_t height);
+    Screen(int width, int height);
 
     void render();
     void push(const GLTK::Drawable *object, GLTK::Shader &shader);
 
-    void resize(uint32_t width, uint32_t height);
+    void resize(int width, int height);
     void onCameraUpdate(const Camera &camera);
   };
 }
