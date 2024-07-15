@@ -27,7 +27,7 @@ void ObscureEngine::GLTK::glContext::context_swapBuffers()
   glfwSwapBuffers(this->window);
 }
 
-void ObscureEngine::GLTK::glContext::context_clear(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
+void ObscureEngine::GLTK::glContext::context_clear(float red, float green, float blue, float alpha)
 {
   glClearColor(red, green, blue, alpha);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

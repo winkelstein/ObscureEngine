@@ -17,7 +17,7 @@ namespace ObscureEngine
       void context_makeContextCurrent();
       void context_swapBuffers();
 
-      void context_clear(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
+      void context_clear(float red, float green, float blue, float alpha);
     };
   }
 }

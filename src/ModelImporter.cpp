@@ -110,9 +110,9 @@ std::shared_ptr<ObscureEngine::Model> ObscureEngine::Importer::ModelImporter::pa
 
     float r, g, b, a = 1.0;
 
-    r = ((color >> 16) & 0xFF) / 255.0;
+    b = ((color >> 16) & 0xFF) / 255.0;
     g = ((color >> 8) & 0xFF) / 255.0;
-    b = ((color) & 0xFF) / 255.0;
+    r = ((color) & 0xFF) / 255.0;
 
     voxels.push_back(std::shared_ptr<Voxel>(new Voxel(glm::vec4(r, g, b, a))));
     voxels[i]->position(glm::vec3(positions[i].x, positions[i].y, positions[i].z));
