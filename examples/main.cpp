@@ -8,12 +8,16 @@
 #include <ObscureEngine/WS/Mouse.hpp>
 #include <ObscureEngine/WS/Keyboard.hpp>
 #include <ObscureEngine/FPSCounter.h>
+#include <ObscureEngine/Model.h>
+#include <ObscureEngine/Importer/ModelImporter.h>
 
 using ObscureEngine::FPSCounter;
+using ObscureEngine::Model;
 using ObscureEngine::Player;
 using ObscureEngine::Screen;
 using ObscureEngine::Voxel;
 using ObscureEngine::GLTK::Shader;
+using ObscureEngine::Importer::ModelImporter;
 using ObscureEngine::Importer::ShaderImporter;
 using ObscureEngine::WS::Keyboard;
 using ObscureEngine::WS::Mouse;
@@ -29,13 +33,14 @@ int main()
   FPSCounter counter;
 
   ShaderImporter shader_importer;
+  ModelImporter model_importer;
 
   auto shader_pair = shader_importer.import("assets/shaders/default");
   std::shared_ptr<Shader> shader = shader_pair.second;
   shader->bind();
 
-  Voxel vox1(glm::vec4(1.0, 0.0, 0.0, 1.0));
-  vox1.position(glm::vec3(0.0, 0.0, 0.0));
+  auto model_pair = model_importer.import("assets/models/deer");
+  std::shared_ptr<Model> deer = model_pair.second;
 
   while (window.isOpen())
   {
@@ -53,7 +58,7 @@ int main()
       window.close();
     }
 
-    screen.push(&vox1, *shader);
+    screen.push(&*deer, *shader);
     screen.onCameraUpdate(player.camera());
     screen.render();
     window.clear(1.0, 1.0, 1.0, 1.0);
