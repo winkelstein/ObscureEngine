@@ -26,9 +26,9 @@ using ObscureEngine::WS::Window;
 int main()
 {
   Window window("ObscureEngine example", 800, 600);
+
   auto [width, height] = window.size();
   Player player;
-  std::cout << (float)width << " " << (float)height << std::endl;
   Screen screen(width, height);
   FPSCounter counter;
 
@@ -40,7 +40,7 @@ int main()
   shader->bind();
 
   auto model_pair = model_importer.import("assets/models/deer");
-  std::shared_ptr<Model> deer = model_pair.second;
+  std::shared_ptr<Model> model = model_pair.second;
 
   while (window.isOpen())
   {
@@ -58,7 +58,7 @@ int main()
       window.close();
     }
 
-    screen.push(&*deer, *shader);
+    screen.push(&*model, *shader);
     screen.onCameraUpdate(player.camera());
     screen.render();
     window.clear(1.0, 1.0, 1.0, 1.0);
